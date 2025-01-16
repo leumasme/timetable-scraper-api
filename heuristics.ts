@@ -22,8 +22,8 @@ export function parseLectureData(lecture: LectureData): ParsedLectureData {
     .replace(typeRegex, "")
     .replace(groupRegex, "")
     .replace(descriptorRegex, "")
-    .replaceAll(/\( *\)/, "") // Remove empty braces
-    .replace(/\.$/, "") // Remove ending dot
+    .replaceAll(/\( *\)/g, "") // Remove empty braces
+    .replace(/\.$/g, "") // Remove ending dot
     .trim().replace(/  +/g, " ");
 
   const parsedDate = parseDate(lecture.date);
