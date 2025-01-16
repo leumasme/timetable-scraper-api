@@ -23,7 +23,7 @@ export function parseLectureData(lecture: LectureData): ParsedLectureData {
     .replace(groupRegex, "")
     .replace(descriptorRegex, "")
     .replaceAll(/\( *\)/, "") // Remove empty braces
-    .replace(/\.$/, "")
+    .replace(/\.$/, "") // Remove ending dot
     .trim().replace(/  +/g, " ");
 
   const parsedDate = parseDate(lecture.date);
@@ -37,7 +37,8 @@ export function parseLectureData(lecture: LectureData): ParsedLectureData {
   };
 }
 
-const descriptors = ["Online", "Wiederholer", "Tutorium"];
+const descriptors = ["Online", "Wiederholer", "Tutorium", "Zus."];
+// TODO: Detect descriptors only if they are not preceeded/followed by a letter
 const descriptorRegex = new RegExp(`\(${descriptors.join("|")}\)`, "ig");
 // todo: parse descriptors? are they useful?
 
