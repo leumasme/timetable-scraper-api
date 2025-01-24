@@ -123,5 +123,3 @@ export async function getAllSemesterData() {
 
   return allData;
 }
-
-getAllSemesterData();
