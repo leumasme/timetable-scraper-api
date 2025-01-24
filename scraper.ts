@@ -12,8 +12,20 @@ async function getParams() {
   const dom = new DOMParser().parseFromString(await res.text(), "text/html");
   if (!dom) throw new Error("Failed to parse document");
 
-  const weeks = dom.querySelector("#input_weeks > option[selected]")!
-    .getAttribute("value")!;
+  // const weeks = dom.querySelector("#input_weeks > option[selected]")!
+  //   .getAttribute("value")!;
+  // HACK: Table-view does not show events in the past if multiple weeks are selected
+  // For now, just select the last week if that is the current week.
+  const week_options = dom.querySelector("#input_weeks")!.children
+  let week_option: Element
+  if (week_options[week_options.length-1].textContent.includes("aktuell")) {
+    // Current week is last week, pick last week
+    week_option = week_options[week_options.length-1]
+  } else {
+    // Current weeks is not last week, pick all weeks
+    week_option = week_options[0]
+  }
+  const weeks = week_option.getAttribute("value")!
 
   const semesterElems = Array.from(
     dom.querySelectorAll("#identifier_semester > option")!,
