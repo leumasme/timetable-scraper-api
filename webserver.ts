@@ -15,9 +15,9 @@ export function startWebserver() {
       lastScrape = Date.now();
     }
 
-    console.log("Serving request");
+    console.log("Serving request to", req.url);
     return new Response(JSON.stringify(cachedData));
   });
-  
+
   console.log("Webserver started on port 7299");
 }

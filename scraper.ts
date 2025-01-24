@@ -18,7 +18,7 @@ async function getParams() {
   const semesterElems = Array.from(
     dom.querySelectorAll("#identifier_semester > option")!,
   ) as Element[];
-  console.log(semesterElems);
+
   const semesters = semesterElems
     .map((s) => [s.textContent, s.getAttribute("value")])
     .filter((v) => v[1] != null && v[1].length > 0) as [string, string][];
@@ -58,6 +58,7 @@ async function getLectureData(params: Record<string, string>) {
     url.searchParams.set(name, value);
   }
 
+  console.log("Using URL", url.toString());
   const res = await fetch(url);
   const text = await res.text();
   const dom = new DOMParser().parseFromString(text, "text/html");
