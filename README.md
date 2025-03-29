@@ -3,7 +3,7 @@
 This project does the following:
 
 - Scrape the Timetable data of the HBRS University, located
-  [here](https://eva2.inf.h-brs.de/stundenplan/)
+  [here](https://eva2.inf.h-brs.de/stundenplan/) (EVA2)
   - Extract the data from HTML
   - and cache it for 1 hour
   - Only performed on incoming request, not on a strict schedule
@@ -14,6 +14,8 @@ This project does the following:
 
 This is my first proper Deno project because I wanted to try Deno!\
 Run with `deno task start`
+
+My hosted instance of this project is available at https://eva2.olotl.net/
 
 The schema of the response JSON as a typescript type is as follows:
 
